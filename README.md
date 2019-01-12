@@ -1,5 +1,7 @@
-# BJSS_liveobs_automation
-Automation Test Suite for LiveObs
+# openeobs automation
+Automation Test Suite for open-eObs, created by BJSS for LiveObs
+
+![](https://img.shields.io/travis/openeobs/openeobs-automation.svg?logo=travis)
 
 # Running locally
 1. Modify the `config.yml` parameters such as database and server URL 
