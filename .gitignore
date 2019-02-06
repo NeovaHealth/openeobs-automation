@@ -108,3 +108,6 @@ ENV/
 allure-report/
 liveobs_auto_test_output/
 node_modules/
+
+#chromedriver
+chromedriver

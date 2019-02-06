@@ -38,8 +38,8 @@ def before_all(context):
     context.client = Client(
         context.helpers.config.get('server'),
         context.helpers.config.get('database'),
-        user='admin',
-        password='admin',
+        context.helpers.config.get('user'),
+        context.helpers.config.get('password'),
     )
     _create_patient_lookup(context)
 

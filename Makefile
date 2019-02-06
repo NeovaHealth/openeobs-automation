@@ -1,6 +1,7 @@
 #!/usr/bin/make
 
-GATEWAY=$(shell ip r l | awk '/^default/ {print $$3}')
+GATEWAY ?= $(shell ip r l | awk '/^default/ {print $$3}')
+DATABASE ?= nhclinical
 
 install_sauce_connect:
 	@curl -o sauce_connect.tar.gz -SL https://saucelabs.com/downloads/sc-4.4.9-linux.tar.gz
@@ -33,6 +34,7 @@ stop_chrome:
 	@docker rm selenium || /bin/true
 
 install_chromedriver:
+	@rm -rf chromedriver
 	@curl -o chromedriver.zip -SL https://chromedriver.storage.googleapis.com/2.38/chromedriver_linux64.zip
 	@unzip -d chromedriver chromedriver.zip
 	@rm chromedriver.zip
@@ -41,7 +43,7 @@ run: install_chromedriver
 	@curl -sf --head http://${GATEWAY}:8069/web
 	@sleep 5
 	@sed -i "s,localhost,${GATEWAY},g" config.yml
-	@sed -i "s,nhclinical,db,g" config.yml
+	@sed -i "s,nhclinical,${DATABASE},g" config.yml
 	PATH=$$PATH:chromedriver/ GATEWAY="${GATEWAY}" venv/bin/behave features/
 
 clean_up:

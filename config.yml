@@ -4,7 +4,9 @@ user_role_map:
   Nurse: nasir
   Doctor: dale
 database: nhclinical
-server: "http://localhost:8069"
+user: admin
+password: changeme
+server: "http://127.0.0.1:8069"
 urls:
   login: "/mobile/login"
   mobile_login: "/mobile/login"
